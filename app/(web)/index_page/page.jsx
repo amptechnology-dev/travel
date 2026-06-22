@@ -367,7 +367,7 @@ export default async function AboutSection() {
       <div className="container-fluid py-5 " id="about">
         <div className="container pt-5">
           <div className="row">
-            <div class="h1 text-center pb-5">ABOUT SECTION</div>
+            <div class="h1 text-center pb-5">ABOUT US</div>
             <div className="col-lg-6" style={{ minHeight: 500 }}>
               <div className="position-relative h-100">
                 <img
@@ -388,19 +388,19 @@ export default async function AboutSection() {
                 <h1 className="mb-3">
                   We Provide Best Tour Packages In Your Budget
                 </h1>
-                <p>abc</p>
+                <p>{Aboutdata.data?.description}</p>
                 <div className="row mb-4">
                   <div className="col-6">
                     <img
                       className="img-fluid"
-                      src={`https://${Officedata.data?.banner[1]?.slice(7)}`}
+                      src={`https://${Officedata.data?.banner[0]?.slice(7)}`}
                       alt=""
                     />
                   </div>
                   <div className="col-6">
                     <img
                       className="img-fluid"
-                      src={`https://${Officedata.data?.banner[2]?.slice(7)}`}
+                      src={`https://${Officedata.data?.banner[1]?.slice(7)}`}
                     />
                   </div>
                 </div>
