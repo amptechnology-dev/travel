@@ -8900,3 +8900,43 @@ h6,
   padding: 0;
   list-style-type: none;
 }
+
+.destination-item {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.destination-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.destination-item:hover img {
+  transform: scale(1.08);
+}
+
+.destination-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 16px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+  transition: opacity 0.3s ease;
+}
+
+.destination-overlay h5 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.destination-overlay span {
+  font-size: 12px;
+  opacity: 0.85;
+}

@@ -267,15 +267,51 @@ export default async function AboutSection() {
       </div>
       {/* Topbar End */}
       {/* Navbar Start */}
-      <div className=" mt-3 container-fluid position-relative nav-bar p-0">
+      <div className="mt-3 container-fluid position-relative nav-bar p-0">
         <div
           className="container-fluid position-relative p-0 px-lg-3"
           style={{ zIndex: 9 }}
         >
           <nav className="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-            <a href="" className="navbar-brand">
-              {Officedata.data.name}
+            {/* ✅ Updated Brand Section */}
+            <a href="" className="navbar-brand d-flex align-items-center gap-2">
+              <img
+  src="/img/sumiicon.jpeg"
+  alt="Sumi Travel Logo"
+  style={{
+    width: "80px",        
+    height: "42px",       
+    borderRadius: "8px",
+    objectFit: "contain", 
+    objectPosition: "center",
+    border: "2px solid #198754",
+    backgroundColor: "#fff", 
+  }}
+/>
+              <div className="d-flex flex-column" style={{ lineHeight: "1.2" }}>
+                <span
+                  style={{
+                    fontSize: "17px",
+                    fontWeight: "600",
+                    color: "#198754",
+                    letterSpacing: "0.3px",
+                  }}
+                >
+                  Sumi Travel
+                </span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#6c757d",
+                    letterSpacing: "0.8px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Explore the world
+                </span>
+              </div>
             </a>
+
             <button
               type="button"
               className="navbar-toggler"
@@ -284,12 +320,13 @@ export default async function AboutSection() {
             >
               <span className="navbar-toggler-icon" />
             </button>
+
             <div
               className="collapse navbar-collapse justify-content-between px-3"
               id="navbarCollapse"
             >
               <div className="navbar-nav ml-auto py-0">
-                <a href="#" className="nav-item nav-link ">
+                <a href="#" className="nav-item nav-link">
                   Home
                 </a>
                 <a href="#about" className="nav-item nav-link">
@@ -298,10 +335,10 @@ export default async function AboutSection() {
                 <a href="#package" className="nav-item nav-link">
                   Tour Packages
                 </a>
-                <a href="#destination." className="nav-item nav-link">
+                <a href="#destination" className="nav-item nav-link">
                   Gallery
                 </a>
-                <a href="#acctivities." className="nav-item nav-link">
+                <a href="#acctivities" className="nav-item nav-link">
                   Activities
                 </a>
                 <a href="#services" className="nav-item nav-link">
@@ -310,13 +347,14 @@ export default async function AboutSection() {
                 <a href="#contact" className="nav-item nav-link">
                   Contact
                 </a>
+
                 <a
                   href={`https://api.whatsapp.com/send?phone=${Officedata.data.whatsapp}&text=hi%20`}
                   className="nav-item nav-link"
                 >
                   <button
                     type="button"
-                    className=" rounded-pill btn btn-success"
+                    className="rounded-pill btn btn-success"
                   >
                     <i className="fa-brands fa-whatsapp" />
                     &nbsp;WhatsApp Enquiry
@@ -326,9 +364,9 @@ export default async function AboutSection() {
                 <a href="/dashboard" className="nav-item nav-link">
                   <button
                     type="button"
-                    className=" rounded-pill btn btn-success"
+                    className="rounded-pill btn btn-outline-success"
                   >
-                    &nbsp;Login
+                    Login
                   </button>
                 </a>
               </div>
@@ -465,7 +503,9 @@ export default async function AboutSection() {
                   className="d-flex flex-shrink-0 align-items-center justify-content-center bg-primary mr-3"
                   style={{ height: 100, width: 100 }}
                 >
-                  <BiWorld style={{ height: 50, width: 50, color: "white" }} />{" "}
+                  <BiWorld
+                    style={{ height: 50, width: 50, color: "white" }}
+                  />{" "}
                 </div>
                 <div className="d-flex flex-column">
                   <h5 className="">Worldwide Coverage</h5>
@@ -604,26 +644,25 @@ export default async function AboutSection() {
             </h6>
             <h1>Explore Top Destination</h1>
           </div>
-          <div className="row">
-            {Gallerydata.data?.map((item, index) => (
-              <div key={index} className="col-lg-4 col-md-6 mb-4">
-                <div className="destination-item position-relative overflow-hidden mb-2">
-                  <img
-                    className="img-fluid"
-                    src={`https://${item.image.slice(7)}`}
-                    alt=""
-                  />
-                  <a
-                    className="destination-overlay text-white text-decoration-none"
-                    href=""
-                  >
-                    <h5 className="text-white">{item.description}</h5>
-                    <span>100 Cities</span>
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+          <div className="row g-4">
+  {Gallerydata.data?.map((item, index) => (
+    <div key={index} className="col-lg-4 col-md-6">
+      <div className="destination-item position-relative overflow-hidden">
+        <img
+          className="img-fluid"
+          src={`https://${item.image.slice(7)}`}
+          alt={item.description}
+        />
+        
+          <a className="destination-overlay text-white text-decoration-none"
+          href=""
+        >
+          <h5 className="text-white">{item.description}</h5>
+        </a>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </div>
       {/* Destination Start */}
@@ -676,9 +715,7 @@ export default async function AboutSection() {
                   <div className="team-img position-relative overflow-hidden">
                     <img
                       className="img-fluid w-100"
-                      src={`${
-                        process.env.NEXT_PUBLIC_BACKPUBLIC
-                      }/${item.avatar.slice(7)}`}
+                      src={`https://${item.avatar.slice(7)}`}
                       alt="avtar"
                     />
                     <div className="team-social">
@@ -695,7 +732,7 @@ export default async function AboutSection() {
                   </div>
                   <div className="text-center py-4">
                     <h5 className="text-truncate">{item.name}</h5>
-                    <p className="m-0">Age: {item.age}</p>
+                    {/* <p className="m-0">Age: {item.age}</p> */}
                   </div>
                 </div>
               </div>
