@@ -348,9 +348,7 @@ export default async function AboutSection() {
               data-ride="carousel"
             >
               <img
-                src={`${
-                  process.env.NEXT_PUBLIC_BACKPUBLIC
-                }/${Officedata.data?.banner[0].slice(7)}`}
+                src={`https://${Officedata.data?.banner[0].slice(7)}`}
                 className="img-fluid w-100 "
                 alt="Responsive image"
               />
@@ -374,9 +372,7 @@ export default async function AboutSection() {
               <div className="position-relative h-100">
                 <img
                   className="position-absolute w-100 h-100"
-                  src={`${
-                    process.env.NEXT_PUBLIC_BACKPUBLIC
-                  }/${Aboutdata.data?.image?.slice(7)}`}
+                  src={`http://${Aboutdata.data?.image?.slice(7)}`}
                   style={{ objectFit: "fill" }}
                 />
               </div>
@@ -397,18 +393,14 @@ export default async function AboutSection() {
                   <div className="col-6">
                     <img
                       className="img-fluid"
-                      src={`${
-                        process.env.NEXT_PUBLIC_BACKPUBLIC
-                      }/${Officedata.data?.banner[1]?.slice(7)}`}
+                      src={`https://${Officedata.data?.banner[1]?.slice(7)}`}
                       alt=""
                     />
                   </div>
                   <div className="col-6">
                     <img
                       className="img-fluid"
-                      src={`${
-                        process.env.NEXT_PUBLIC_BACKPUBLIC
-                      }/${Officedata.data?.banner[2]?.slice(7)}`}
+                      src={`https://${Officedata.data?.banner[2]?.slice(7)}`}
                     />
                   </div>
                 </div>
@@ -553,9 +545,7 @@ export default async function AboutSection() {
                   <div className="package-item bg-white mb-2">
                     <img
                       className="img-fluid"
-                      src={`${
-                        process.env.NEXT_PUBLIC_BACKPUBLIC
-                      }/${item.image?.slice(7)}`}
+                      src={`https://${item.image?.slice(7)}`}
                       alt=""
                     />
                     <p className="mt-2 btn btn-primary">
@@ -620,9 +610,7 @@ export default async function AboutSection() {
                 <div className="destination-item position-relative overflow-hidden mb-2">
                   <img
                     className="img-fluid"
-                    src={`${
-                      process.env.NEXT_PUBLIC_BACKPUBLIC
-                    }/${item.image.slice(7)}`}
+                    src={`https://${item.image.slice(7)}`}
                     alt=""
                   />
                   <a
@@ -736,9 +724,7 @@ export default async function AboutSection() {
                   <div className="position-relative">
                     <img
                       className="img-fluid w-100"
-                      src={`${
-                        process.env.NEXT_PUBLIC_BACKPUBLIC
-                      }/${item.image.slice(7)}`}
+                      src={`https://${item.image.slice(7)}`}
                       alt="event-image"
                     />
                     {/* <div className="blog-date">
