@@ -1,10 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "office-backend.amptechnology.in",
+        hostname: "office.amptechnology.in",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.amptechnology.in",
         port: "",
       },
       {
