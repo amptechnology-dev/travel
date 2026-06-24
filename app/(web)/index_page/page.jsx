@@ -91,15 +91,22 @@ async function getAbout() {
 }
 
 async function getPackages() {
-  const res = await fetch(process.env.BACKLINK + "/public/package", {
-    headers: {
-      "x-api-key": process.env.API_KEY,
-      "office-id": process.env.OFFICE,
-    },
-    cache: "no-store",
-  });
-  return res.json();
+  try {
+    const res = await fetch(process.env.BACKLINK + "/public/package", {
+      headers: {
+        "x-api-key": process.env.API_KEY,
+        "office-id": process.env.OFFICE,
+      },
+      cache: "no-store",
+    });
+    if (!res.ok) return { data: [] };
+    return res.json();
+  } catch (e) {
+    console.error("getPackages error:", e);
+    return { data: [] };
+  }
 }
+
 async function getSocial() {
   const res = await fetch(process.env.BACKLINK + "/public/Social", {
     headers: {
@@ -222,35 +229,24 @@ export default async function AboutSection() {
       <Navbar officeData={Officedata.data} socialData={Socialdata.data} />
 
       {/* Carousel Start */}
-      {/* Carousel Start */}
-      <div
-        className="container-fluid p-0"
-        style={{ marginTop: "0px" }}
-        id="home"
-      >
+      <div className="container-fluid p-0" id="home">
         <div
           id="header-carousel"
           className="carousel slide"
           data-ride="carousel"
-          style={{
-            height: "calc(100vh - 150px)",
-            overflow: "hidden",
-          }}
         >
-          <div className="carousel-inner h-100">
+          <div className="carousel-inner">
             {Officedata.data?.banner.map((banner, index) => (
               <div
                 key={index}
-                className={`carousel-item h-100 ${index === 0 ? "active" : ""}`}
+                className={`carousel-item ${index === 0 ? "active" : ""}`}
               >
                 <img
                   src={`https://${banner.slice(7)}`}
                   alt={`Banner ${index + 1}`}
                   style={{
                     width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center top",
+                    height: "auto",
                     display: "block",
                   }}
                 />
@@ -266,6 +262,7 @@ export default async function AboutSection() {
           >
             <span className="carousel-control-prev-icon" aria-hidden="true" />
           </a>
+
           <a
             className="carousel-control-next"
             href="#header-carousel"
@@ -275,15 +272,20 @@ export default async function AboutSection() {
             <span className="carousel-control-next-icon" aria-hidden="true" />
           </a>
         </div>
+
+        <div
+          style={{
+            marginTop: "-60px",
+            position: "relative",
+            zIndex: 10,
+            padding: "0 20px",
+          }}
+        >
+          <Enquiry onSubmit={onSubmit} packages={Packagedata} />
+        </div>
       </div>
       {/* Carousel End */}
 
-      {/* Carousel End */}
-      {/* Booking Start */}
-      <div className="container-fluid booking mt-5 pb-5">
-        <Enquiry onSubmit={onSubmit} packages={Packagedata} />
-      </div>
-      {/* Booking End */}
       {/* About Start */}
       <div className="container-fluid py-5 " id="about">
         <div className="container pt-5">
@@ -1019,10 +1021,10 @@ export default async function AboutSection() {
                 className="text-white text-uppercase mb-4"
                 style={{ letterSpacing: 5 }}
               >
-                {Officedata.data.name}
+                {Officedata?.data?.name}
               </h5>{" "}
             </a>
-            <p>{`${Aboutdata.data.description.slice(0, 200)}............`}</p>
+            <p>{`${Aboutdata?.data?.description.slice(0, 200)}............`}</p>
 
             <h6
               className="text-white text-uppercase mt-4 mb-3"
@@ -1072,15 +1074,15 @@ export default async function AboutSection() {
             </h5>
             <p>
               <i className="fa fa-map-marker-alt mr-2" />
-              {Officedata.data.address}{" "}
+              {Officedata?.data?.address}{" "}
             </p>
             <p>
               <i className="fa fa-phone-alt mr-2" />
-              {Officedata.data.mobile}{" "}
+              {Officedata?.data?.mobile}{" "}
             </p>
             <p>
               <i className="fa fa-envelope mr-2" />
-              {Officedata.data.email}{" "}
+              {Officedata?.data?.email}{" "}
             </p>
           </div>
         </div>
