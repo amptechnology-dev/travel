@@ -248,9 +248,7 @@ function Page() {
                 <td>
                   <img
                     style={{ width: 400, height: 200 }}
-                    src={`${
-                      process.env.NEXT_PUBLIC_BACKPUBLIC
-                    }/${office.image.slice(7)}`}
+                    src={`https://${office.image.slice(7)}`}
                     alt={`Logo of Office ${index + 1}`}
                   />
                 </td>

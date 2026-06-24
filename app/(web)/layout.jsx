@@ -55,8 +55,8 @@ export default async function RootLayout({ children }) {
   const socialData = getSocial?.data[0];
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" style={{ overflowX: 'hidden' }}>
+      <body className={inter.className} style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
         <WhatsAppButton />
         {children}
       </body>

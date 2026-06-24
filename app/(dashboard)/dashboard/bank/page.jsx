@@ -253,9 +253,7 @@ function Page() {
               {editIndex !== null && galleryDetails[editIndex].qr && (
                 <div className="mt-2">
                   <img
-                    src={`${
-                      process.env.NEXT_PUBLIC_BACKPUBLIC
-                    }/${galleryDetails[editIndex].qr.slice(7)}`}
+                    src={`https://${galleryDetails[editIndex].qr.slice(7)}`}
                     alt={`Current ${galleryDetails[editIndex].description}`}
                     style={{ width: "150px", height: "100px" }}
                   />
@@ -332,7 +330,7 @@ function Page() {
                 <td>{item.upi}</td>
                 <td>
                   <img
-                    src={`${process.env.NEXT_PUBLIC_BACKPUBLIC}/${item.qr.slice(
+                    src={`https://${item.qr.slice(
                       7
                     )}`}
                     alt={`Image of ${item.name}`}

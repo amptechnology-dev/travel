@@ -14,6 +14,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ContactFrom from "../component/booking/ContactFrom";
 // import Enquiry from "../component/Enquiry";
 import Enquiry from "../component/booking/Enquiry";
+import Navbar from "../component/Navbar";
+import PackageImageModal from "../component/PackageImageModal";
+import ActivitiesSection from "../component/ActivitiesSection";
 
 async function getOfficeData() {
   const res = await fetch(process.env.BACKLINK + "/public/officeData", {
@@ -215,185 +218,65 @@ export default async function AboutSection() {
       >
         <i className="fa-brands fa-whatsapp wp-button" />
       </a>
-      {/* Topbar Start */}
-      <div className="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div className="container-fluid">
-          <div className="row bg-dark">
-            <div className="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-              <div className=" mt-3 d-inline-flex align-items-center text-light">
-                <p>
-                  <i className="fa fa-envelope  mr-2" />
-                  {Officedata.data.email}{" "}
-                </p>
-                <p className="text-body px-3">|</p>
-                <p>
-                  <i className="fa fa-phone-alt mr-2" />{" "}
-                  {Officedata.data.mobile}{" "}
-                </p>
-              </div>
-            </div>
-            <div className=" text-light mt-3 col-lg-6 text-center text-lg-right">
-              <div className="d-inline-flex align-items-center">
-                <a
-                  className="text-primary px-3"
-                  href={`${Socialdata.data.facebook}`}
-                >
-                  <FaFacebookF />
-                </a>
-                <p>{Socialdata.data.facebook}</p>
 
-                <a
-                  className="text-primary px-3"
-                  href={`${Socialdata.data.instagram}`}
-                >
-                  <FaInstagram />
-                </a>
-                <a
-                  className="text-primary px-3"
-                  href={`${Socialdata.data.youtube}`}
-                >
-                  <FaYoutube />
-                </a>
-                <a
-                  className="text-primary pl-3"
-                  href={`${Socialdata.data.twitter}`}
-                >
-                  <FaTwitter />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Topbar End */}
-      {/* Navbar Start */}
-      <div className="mt-3 container-fluid position-relative nav-bar p-0">
-        <div
-          className="container-fluid position-relative p-0 px-lg-3"
-          style={{ zIndex: 9 }}
-        >
-          <nav className="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-            {/* ✅ Updated Brand Section */}
-            <a href="" className="navbar-brand d-flex align-items-center gap-2">
-              <img
-  src="/img/sumiicon.jpeg"
-  alt="Sumi Travel Logo"
-  style={{
-    width: "80px",        
-    height: "42px",       
-    borderRadius: "8px",
-    objectFit: "contain", 
-    objectPosition: "center",
-    border: "2px solid #198754",
-    backgroundColor: "#fff", 
-  }}
-/>
-              <div className="d-flex flex-column" style={{ lineHeight: "1.2" }}>
-                <span
-                  style={{
-                    fontSize: "17px",
-                    fontWeight: "600",
-                    color: "#198754",
-                    letterSpacing: "0.3px",
-                  }}
-                >
-                  Sumi Travel
-                </span>
-                <span
-                  style={{
-                    fontSize: "11px",
-                    color: "#6c757d",
-                    letterSpacing: "0.8px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Explore the world
-                </span>
-              </div>
-            </a>
+      <Navbar officeData={Officedata.data} socialData={Socialdata.data} />
 
-            <button
-              type="button"
-              className="navbar-toggler"
-              data-toggle="collapse"
-              data-target="#navbarCollapse"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-
-            <div
-              className="collapse navbar-collapse justify-content-between px-3"
-              id="navbarCollapse"
-            >
-              <div className="navbar-nav ml-auto py-0">
-                <a href="#" className="nav-item nav-link">
-                  Home
-                </a>
-                <a href="#about" className="nav-item nav-link">
-                  About
-                </a>
-                <a href="#package" className="nav-item nav-link">
-                  Tour Packages
-                </a>
-                <a href="#destination" className="nav-item nav-link">
-                  Gallery
-                </a>
-                <a href="#acctivities" className="nav-item nav-link">
-                  Activities
-                </a>
-                <a href="#services" className="nav-item nav-link">
-                  Services
-                </a>
-                <a href="#contact" className="nav-item nav-link">
-                  Contact
-                </a>
-
-                <a
-                  href={`https://api.whatsapp.com/send?phone=${Officedata.data.whatsapp}&text=hi%20`}
-                  className="nav-item nav-link"
-                >
-                  <button
-                    type="button"
-                    className="rounded-pill btn btn-success"
-                  >
-                    <i className="fa-brands fa-whatsapp" />
-                    &nbsp;WhatsApp Enquiry
-                  </button>
-                </a>
-
-                <a href="/dashboard" className="nav-item nav-link">
-                  <button
-                    type="button"
-                    className="rounded-pill btn btn-outline-success"
-                  >
-                    Login
-                  </button>
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-      {/* Navbar End */}
       {/* Carousel Start */}
-      <div class="container-fluid p-0">
-        <div class="row">
-          <div class="col-sm-12">
-            {" "}
-            <div
-              id="header-carousel"
-              class="carousel slide"
-              data-ride="carousel"
-            >
-              <img
-                src={`https://${Officedata.data?.banner[0].slice(7)}`}
-                className="img-fluid w-100 "
-                alt="Responsive image"
-              />
-            </div>
+      {/* Carousel Start */}
+      <div
+        className="container-fluid p-0"
+        style={{ marginTop: "0px" }}
+        id="home"
+      >
+        <div
+          id="header-carousel"
+          className="carousel slide"
+          data-ride="carousel"
+          style={{
+            height: "calc(100vh - 150px)",
+            overflow: "hidden",
+          }}
+        >
+          <div className="carousel-inner h-100">
+            {Officedata.data?.banner.map((banner, index) => (
+              <div
+                key={index}
+                className={`carousel-item h-100 ${index === 0 ? "active" : ""}`}
+              >
+                <img
+                  src={`https://${banner.slice(7)}`}
+                  alt={`Banner ${index + 1}`}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center top",
+                    display: "block",
+                  }}
+                />
+              </div>
+            ))}
           </div>
+
+          <a
+            className="carousel-control-prev"
+            href="#header-carousel"
+            role="button"
+            data-slide="prev"
+          >
+            <span className="carousel-control-prev-icon" aria-hidden="true" />
+          </a>
+          <a
+            className="carousel-control-next"
+            href="#header-carousel"
+            role="button"
+            data-slide="next"
+          >
+            <span className="carousel-control-next-icon" aria-hidden="true" />
+          </a>
         </div>
       </div>
+      {/* Carousel End */}
 
       {/* Carousel End */}
       {/* Booking Start */}
@@ -566,72 +449,119 @@ export default async function AboutSection() {
         </div>
       </div> */}
       {/* Registration End */}
+
       {/* Packages Start */}
-      <div className="container-fluid py-5" id="package">
+      <div
+        className="container-fluid py-5"
+        id="package"
+        style={{
+          background: "linear-gradient(135deg, #f8fffe 0%, #f0faf4 100%)",
+        }}
+      >
         <div className="container pt-5 pb-3">
-          <div className="text-center mb-3 pb-3">
-            <h6
-              className="text-primary text-uppercase"
-              style={{ letterSpacing: 5 }}
+          {/* Section Header */}
+          <div className="text-center mb-5">
+            <span
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: "700",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                padding: "6px 20px",
+                borderRadius: "20px",
+                marginBottom: "16px",
+              }}
             >
-              Packages
-            </h6>
-            <h1>Pefect Tour Packages</h1>
+              Our Packages
+            </span>
+            <h1
+              style={{
+                fontSize: "2.2rem",
+                fontWeight: "800",
+                color: "#1a202c",
+                marginBottom: "12px",
+              }}
+            >
+              Perfect Tour Packages
+            </h1>
+            <p
+              style={{
+                color: "#64748b",
+                fontSize: "15px",
+                maxWidth: "500px",
+                margin: "0 auto",
+              }}
+            >
+              Discover handpicked destinations at unbeatable prices — tailored
+              for every kind of traveler.
+            </p>
           </div>
+
           <div className="row">
-            {Packagedata.data?.map((item, index) => {
-              return (
-                <div className="col-lg-4 col-md-6 mb-4" key={index}>
-                  <div className="package-item bg-white mb-2">
-                    <img
-                      className="img-fluid"
+            {Packagedata.data?.map((item, index) => (
+              <div className="col-lg-4 col-md-6 mb-4" key={index}>
+                <div className="package-card">
+                  {/* Image Section */}
+                  <div className="package-image-wrap">
+                    <PackageImageModal
                       src={`https://${item.image?.slice(7)}`}
-                      alt=""
+                      alt={item.name}
                     />
-                    <p className="mt-2 btn btn-primary">
-                      {item.discount}% OFF{" "}
-                      <span className="badge badge-light">{item.name}</span>
-                    </p>
-                    <div className="p-4">
-                      <div className="d-flex justify-content-between mb-3">
-                        <small className="m-0">
-                          <i className="fa fa-map-marker-alt text-primary mr-2" />
-                          {item.place}
-                        </small>
-                        <small className="m-0">
-                          <i className="fa fa-calendar-alt text-primary mr-2" />
-                          {item.duration}
-                        </small>
-                        <small className="m-0">
-                          <i className="fa fa-user text-primary mr-2" />
-                          {item.persons} Persons
-                        </small>
+                    {/* Discount Badge */}
+                    <div className="package-badge package-badge-discount">
+                      🏷️ {item.discount}% OFF
+                    </div>
+                    {/* Package Name Tag */}
+                    <div className="package-badge package-badge-name">
+                      {item.name}
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="package-content">
+                    {/* Meta Info */}
+                    <div className="package-meta">
+                      <div className="package-meta-item">
+                        <span className="package-meta-icon">📍</span>
+                        <span>{item.place}</span>
                       </div>
-                      <p className="fs-5" href="">
-                        {item.description}
-                      </p>
-                      <div className="border-top mt-4 pt-4">
-                        <div className="d-flex justify-content-between align-items-center">
-                          <p className="mb-0 text-success fs-5 font-weight-bold">
-                            ₹ {item.price}{" "}
-                          </p>
-                          <a
-                            className="rounded-pill btn btn-sm btn-success text-white"
-                            href="#booking"
-                          >
-                            <i className="fa-brands fa-whatsapp" /> Enquiry Now
-                          </a>
-                        </div>
+                      <div className="package-meta-item">
+                        <span className="package-meta-icon">🗓️</span>
+                        <span>{item.duration}</span>
                       </div>
+                      <div className="package-meta-item">
+                        <span className="package-meta-icon">👥</span>
+                        <span>{item.persons}</span>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="package-description">{item.description}</p>
+
+                    {/* Price + CTA */}
+                    <div className="package-footer">
+                      <div>
+                        <p className="package-price-label">Starting from</p>
+                        <p className="package-price">₹{item.price}</p>
+                      </div>
+
+                      <a href="#booking" className="package-cta">
+                        <i className="fa-brands fa-whatsapp package-cta-icon" />
+                        Enquire Now
+                      </a>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>
       {/* Packages End */}
+
       {/* Destination Start */}
       <div className="container-fluid py-5" id="destination.">
         <div className="container pt-5 pb-3">
@@ -645,24 +575,25 @@ export default async function AboutSection() {
             <h1>Explore Top Destination</h1>
           </div>
           <div className="row g-4">
-  {Gallerydata.data?.map((item, index) => (
-    <div key={index} className="col-lg-4 col-md-6">
-      <div className="destination-item position-relative overflow-hidden">
-        <img
-          className="img-fluid"
-          src={`https://${item.image.slice(7)}`}
-          alt={item.description}
-        />
-        
-          <a className="destination-overlay text-white text-decoration-none"
-          href=""
-        >
-          <h5 className="text-white">{item.description}</h5>
-        </a>
-      </div>
-    </div>
-  ))}
-</div>
+            {Gallerydata.data?.map((item, index) => (
+              <div key={index} className="col-lg-4 col-md-6">
+                <div className="destination-item position-relative overflow-hidden">
+                  <img
+                    className="img-fluid"
+                    src={`https://${item.image.slice(7)}`}
+                    alt={item.description}
+                  />
+
+                  <a
+                    className="destination-overlay text-white text-decoration-none"
+                    href=""
+                  >
+                    <h5 className="text-white">{item.description}</h5>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       {/* Destination Start */}
@@ -708,7 +639,7 @@ export default async function AboutSection() {
             </h6>
             <h1>Our Travel Guides</h1>
           </div>
-          <div className="row">
+          <div className="row justify-content-center">
             {Staffdata.data?.map((item, index) => (
               <div className="col-lg-3 col-md-4 col-sm-6 pb-2" key={index}>
                 <div className="team-item bg-white mb-4">
@@ -716,23 +647,22 @@ export default async function AboutSection() {
                     <img
                       className="img-fluid w-100"
                       src={`https://${item.avatar.slice(7)}`}
-                      alt="avtar"
+                      alt="avatar"
                     />
                     <div className="team-social">
                       <a className="btn btn-outline-primary btn-square" href="">
-                        <FaTwitter />{" "}
+                        <FaTwitter />
                       </a>
                       <a className="btn btn-outline-primary btn-square" href="">
-                        <FaInstagram />{" "}
+                        <FaInstagram />
                       </a>
                       <a className="btn btn-outline-primary btn-square" href="">
-                        <FaFacebookF />{" "}
+                        <FaFacebookF />
                       </a>
                     </div>
                   </div>
                   <div className="text-center py-4">
                     <h5 className="text-truncate">{item.name}</h5>
-                    {/* <p className="m-0">Age: {item.age}</p> */}
                   </div>
                 </div>
               </div>
@@ -743,46 +673,7 @@ export default async function AboutSection() {
       {/* Team End */}
 
       {/* Activities Start */}
-      <div className="container-fluid py-5" id="acctivities.">
-        <div className="container pt-5 pb-3">
-          <div className="text-center mb-3 pb-3">
-            <h6
-              className="text-primary text-uppercase"
-              style={{ letterSpacing: 5 }}
-            >
-              Activities
-            </h6>
-            <h1> Our Activities</h1>
-          </div>
-          <div className="row pb-3">
-            {Activitydata.data?.map((item, index) => (
-              <div className="col-lg-4 col-md-6 mb-4 pb-2" key={index}>
-                <div className="blog-item">
-                  <div className="position-relative">
-                    <img
-                      className="img-fluid w-100"
-                      src={`https://${item.image.slice(7)}`}
-                      alt="event-image"
-                    />
-                    {/* <div className="blog-date">
-                    <h6 className="font-weight-bold mb-n1">New</h6>
-                    <small className="text-white text-uppercase">Arive</small>
-                  </div> */}
-                  </div>
-                  <div className="bg-white p-4">
-                    <div className="d-flex mb-2">
-                      <p className="text-primary text-uppercase text-decoration-none">
-                        {item.title}
-                      </p>
-                    </div>
-                    <p className="h5 m-0">{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <ActivitiesSection Activitydata={Activitydata} />
       {/* Activities End */}
 
       {/* Contact Start */}
@@ -898,45 +789,218 @@ export default async function AboutSection() {
       {/* Contact End */}
 
       {/* Bank Details Start */}
-      <div className="row justify-content-center" id="bank">
-        <div className="col-lg-10">
-          <br /> <br /> <br />
-          <h1 className="text-center">Bank Details</h1>
-        </div>
-      </div>
-      <div className="row justify-content-center align-items-center">
-        <div className="col-lg-5 text-center">
-          <br /> <br /> <br />
-          <img
-            src="https://img.freepik.com/free-vector/scan-me-qr-code_78370-2915.jpg?w=740&t=st=1715120592~exp=1715121192~hmac=697ed594e8b11ecaa44da8e76888868778a223f38cdfc5244d0080aaae586ac7"
-            style={{ hight: 200, width: 200 }}
-            className="img-fluid"
-            alt="..."
-          />
-        </div>
-        <div className="col-lg-5" style={{ marginLeft: 15 }}>
+      <div
+        className="container-fluid py-5"
+        id="bank"
+        style={{
+          background: "linear-gradient(135deg, #f8fffe 0%, #f0faf4 100%)",
+        }}
+      >
+        <div className="container">
+          <div className="text-center mb-5">
+            <span
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: "700",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                padding: "6px 20px",
+                borderRadius: "20px",
+                marginBottom: "16px",
+              }}
+            >
+              Payment Info
+            </span>
+            <h1
+              style={{
+                fontSize: "2.2rem",
+                fontWeight: "800",
+                color: "#1a202c",
+              }}
+            >
+              Bank Details
+            </h1>
+            <p style={{ color: "#64748b", fontSize: "15px" }}>
+              Scan QR or use bank details to make your payment securely.
+            </p>
+          </div>
+
           {Bankdata.data?.map((bank, index) => (
-            <div key={index} style={{ fontSize: 18, color: "black" }}>
-              <br /> <br /> <br />
-              <p>
-                Bank Account No :{" "}
-                <span style={{ fontSize: 15 }}>{bank.account}</span>
-              </p>
-              <p>
-                Bank IFSC Code :{" "}
-                <span style={{ fontSize: 15 }}>{bank.ifsc}</span>
-              </p>
-              <p>
-                Bank Account Holder Name :{" "}
-                <span style={{ fontSize: 15 }}>{bank.holderName}</span>
-              </p>
-              <p>
-                Bank Name : <span style={{ fontSize: 15 }}>{bank.name}</span>
-              </p>
-              <p>
-                Branch Name :{" "}
-                <span style={{ fontSize: 15 }}>{bank.branch}</span>
-              </p>
+            <div
+              key={index}
+              style={{
+                background: "#fff",
+                borderRadius: "20px",
+                boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
+                overflow: "hidden",
+                maxWidth: "860px",
+                margin: "0 auto 40px auto",
+              }}
+            >
+              <div className="row no-gutters">
+                {/* QR Side */}
+                <div
+                  className="col-md-4 d-flex flex-column align-items-center justify-content-center"
+                  style={{
+                    background:
+                      "linear-gradient(160deg, #16a34a 0%, #22c55e 100%)",
+                    padding: "40px 24px",
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "#fff",
+                      borderRadius: "16px",
+                      padding: "14px",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <img
+                      src={bank.qr}
+                      style={{
+                        height: 160,
+                        width: 160,
+                        display: "block",
+                        borderRadius: "8px",
+                      }}
+                      alt="QR Code"
+                    />
+                  </div>
+                  <p
+                    style={{
+                      color: "#fff",
+                      fontSize: "13px",
+                      fontWeight: "600",
+                      margin: "0 0 4px 0",
+                    }}
+                  >
+                    Scan to Pay
+                  </p>
+                  {bank.upi && (
+                    <span
+                      style={{
+                        background: "rgba(255,255,255,0.2)",
+                        color: "#fff",
+                        fontSize: "12px",
+                        padding: "4px 14px",
+                        borderRadius: "20px",
+                        fontWeight: "600",
+                        marginTop: "6px",
+                      }}
+                    >
+                      📱 {bank.upi}
+                    </span>
+                  )}
+                </div>
+
+                {/* Details Side */}
+                <div className="col-md-8" style={{ padding: "36px 36px" }}>
+                  <div style={{ marginBottom: "20px" }}>
+                    <span
+                      style={{
+                        background: "#f0fdf4",
+                        color: "#16a34a",
+                        fontSize: "11px",
+                        fontWeight: "700",
+                        letterSpacing: "2px",
+                        textTransform: "uppercase",
+                        padding: "4px 14px",
+                        borderRadius: "12px",
+                      }}
+                    >
+                      🏦 {bank.name}
+                    </span>
+                  </div>
+
+                  <h4
+                    style={{
+                      fontWeight: "700",
+                      color: "#1a202c",
+                      marginBottom: "24px",
+                    }}
+                  >
+                    {bank.holderName}
+                  </h4>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "14px",
+                    }}
+                  >
+                    {[
+                      {
+                        label: "Account Number",
+                        value: bank.account,
+                        icon: "💳",
+                      },
+                      { label: "IFSC Code", value: bank.ifsc, icon: "🔑" },
+                      { label: "Branch", value: bank.branch, icon: "📍" },
+                      { label: "Bank Name", value: bank.name, icon: "🏦" },
+                    ].map((row, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "14px",
+                          background: "#f8fafc",
+                          borderRadius: "10px",
+                          padding: "12px 16px",
+                        }}
+                      >
+                        <span style={{ fontSize: "18px", flexShrink: 0 }}>
+                          {row.icon}
+                        </span>
+                        <div style={{ minWidth: 0 }}>
+                          <p
+                            style={{
+                              margin: 0,
+                              fontSize: "11px",
+                              color: "#94a3b8",
+                              fontWeight: "600",
+                              textTransform: "uppercase",
+                              letterSpacing: "0.5px",
+                            }}
+                          >
+                            {row.label}
+                          </p>
+                          <p
+                            style={{
+                              margin: 0,
+                              fontSize: "15px",
+                              fontWeight: "700",
+                              color: "#1e293b",
+                            }}
+                          >
+                            {row.value}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: "24px",
+                      padding: "12px 16px",
+                      background: "#fffbeb",
+                      borderRadius: "10px",
+                      borderLeft: "4px solid #f59e0b",
+                      fontSize: "13px",
+                      color: "#92400e",
+                    }}
+                  >
+                    ⚠️ Please share your payment screenshot after transfer for
+                    faster confirmation.
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
