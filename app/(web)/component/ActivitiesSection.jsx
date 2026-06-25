@@ -10,12 +10,22 @@ const ActivitiesSection = ({ Activitydata }) => {
       <div className="container-fluid py-5" id="activities">
         <div className="container pt-5 pb-3">
           <div className="text-center mb-3 pb-3">
-            <h6
-              className="text-primary text-uppercase"
-              style={{ letterSpacing: 5 }}
+             <span
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: "700",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                padding: "6px 20px",
+                borderRadius: "20px",
+                marginBottom: "16px",
+              }}
             >
               Activities
-            </h6>
+            </span>
             <h1>Our Activities</h1>
           </div>
 

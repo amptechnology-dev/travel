@@ -568,12 +568,23 @@ export default async function AboutSection() {
       <div className="container-fluid py-5" id="destination.">
         <div className="container pt-5 pb-3">
           <div className="text-center mb-3 pb-3">
-            <h6
-              className="text-primary text-uppercase"
-              style={{ letterSpacing: 5 }}
+            <span
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: "700",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                padding: "6px 20px",
+                borderRadius: "20px",
+                marginBottom: "16px",
+              }}
             >
               Destination
-            </h6>
+            </span>
+
             <h1>Explore Top Destination</h1>
           </div>
           <div className="row g-4">
@@ -603,12 +614,22 @@ export default async function AboutSection() {
       <div className="container-fluid py-5" id="services">
         <div className="container pt-5 pb-3">
           <div className="text-center mb-3 pb-3">
-            <h6
-              className="text-primary text-uppercase"
-              style={{ letterSpacing: 5 }}
+            <span
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: "700",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                padding: "6px 20px",
+                borderRadius: "20px",
+                marginBottom: "16px",
+              }}
             >
               Our Services
-            </h6>
+            </span>
             <h1>Tours &amp; Travel Services</h1>
           </div>
           <div className="row">
@@ -633,12 +654,22 @@ export default async function AboutSection() {
       <div className="container-fluid py-5">
         <div className="container pt-5 pb-3">
           <div className="text-center mb-3 pb-3">
-            <h6
-              className="text-primary text-uppercase"
-              style={{ letterSpacing: 5 }}
+            <span
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: "700",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                padding: "6px 20px",
+                borderRadius: "20px",
+                marginBottom: "16px",
+              }}
             >
               Guides
-            </h6>
+            </span>
             <h1>Our Travel Guides</h1>
           </div>
           <div className="row justify-content-center">
