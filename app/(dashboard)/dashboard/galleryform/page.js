@@ -132,8 +132,7 @@ function Page() {
     setFormData({
       description: galleryDetails[index].description,
       galleryImage:
-        "${process.env.NEXT_PUBLIC_BACKPUBLIC}/" +
-        galleryDetails[index].galleryImage?.slice(7),
+        `https://${galleryDetails[index].galleryImage?.slice(7)}`,
     });
 
     setEditIndex(index);
@@ -220,9 +219,7 @@ function Page() {
                 <td>{item.description}</td>
                 <td>
                   <img
-                    src={`${
-                      process.env.NEXT_PUBLIC_BACKPUBLIC
-                    }/${item.image.slice(7)}`}
+                    src={`https://${item.image.slice(7)}`}
                     alt={`Image of ${item.description}`}
                     style={{ width: "350px", height: "200px" }}
                   />

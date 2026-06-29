@@ -79,7 +79,7 @@ const LoginForm = () => {
       </Head>
       <div className={styles.loginWrapper}>
         <div className={styles.loginForm}>
-          <div className={styles.formTitle}>AmpTech</div>
+          <div className={styles.formTitle}>Super Admin Login</div>
           <div className={styles.formInput}>
             <label htmlFor="username">Username</label>
             <input

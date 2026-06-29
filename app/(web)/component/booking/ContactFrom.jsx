@@ -32,9 +32,22 @@ export default function ContactForm({ handleSubmit }) {
     <div className="container-fluid py-5" id="contact">
       <div className="container py-5">
         <div className="text-center mb-3 pb-3">
-          <h6 className="text-primary text-uppercase" style={{ letterSpacing: 5 }}>
+           <span
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: "700",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                padding: "6px 20px",
+                borderRadius: "20px",
+                marginBottom: "16px",
+              }}
+            >
             Contact
-          </h6>
+          </span>
           <h1>Contact For Any Query</h1>
         </div>
         <div className="row justify-content-center">

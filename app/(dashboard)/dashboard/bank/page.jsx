@@ -149,12 +149,12 @@ function Page() {
   const handleEdit = (index) => {
     window.scrollTo(0, 0);
     setFormData({
-      name: galleryDetails[index].name,
-      account: galleryDetails[index].account,
-      holderName: galleryDetails[index].holderName,
-      ifsc: galleryDetails[index].ifsc,
-      branch: galleryDetails[index].branch,
-      upi: galleryDetails[index].upi,
+      name: galleryDetails[index]?.name,
+      account: galleryDetails[index]?.account,
+      holderName: galleryDetails[index]?.holderName,
+      ifsc: galleryDetails[index]?.ifsc,
+      branch: galleryDetails[index]?.branch,
+      upi: galleryDetails[index]?.upi,
       qr: null,
     });
     setEditIndex(index);
@@ -253,9 +253,7 @@ function Page() {
               {editIndex !== null && galleryDetails[editIndex].qr && (
                 <div className="mt-2">
                   <img
-                    src={`${
-                      process.env.NEXT_PUBLIC_BACKPUBLIC
-                    }/${galleryDetails[editIndex].qr.slice(7)}`}
+                    src={`https://${galleryDetails[editIndex].qr.slice(7)}`}
                     alt={`Current ${galleryDetails[editIndex].description}`}
                     style={{ width: "150px", height: "100px" }}
                   />
@@ -322,20 +320,20 @@ function Page() {
             </tr>
           </thead>
           <tbody>
-            {galleryDetails.map((item, index) => (
+            {galleryDetails?.map((item, index) => (
               <tr key={item._id}>
-                <td>{item.name}</td>
-                <td>{item.account}</td>
-                <td>{item.holderName}</td>
-                <td>{item.ifsc}</td>
-                <td>{item.branch}</td>
-                <td>{item.upi}</td>
+                <td>{item?.name}</td>
+                <td>{item?.account}</td>
+                <td>{item?.holderName}</td>
+                <td>{item?.ifsc}</td>
+                <td>{item?.branch}</td>
+                <td>{item?.upi}</td>
                 <td>
                   <img
-                    src={`${process.env.NEXT_PUBLIC_BACKPUBLIC}/${item.qr.slice(
+                    src={`https://${item?.qr?.slice(
                       7
                     )}`}
-                    alt={`Image of ${item.name}`}
+                    alt={`Image of ${item?.name}`}
                     style={{ width: "250px", height: "150px" }}
                   />
                 </td>
