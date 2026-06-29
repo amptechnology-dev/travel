@@ -565,7 +565,7 @@ export default async function AboutSection() {
       {/* Packages End */}
 
       {/* Destination Start */}
-      <div className="container-fluid py-5" id="destination.">
+      <div className="container-fluid py-5" id="destination">
         <div className="container pt-5 pb-3">
           <div className="text-center mb-3 pb-3">
             <span
