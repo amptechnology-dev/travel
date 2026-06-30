@@ -190,7 +190,7 @@ export default function Navbar({ officeData, socialData }) {
             <div
               style={{ fontSize: "17px", fontWeight: "700", color: "#198754" }}
             >
-              Sumi Travel
+              Sumi Travels
             </div>
             <div
               style={{

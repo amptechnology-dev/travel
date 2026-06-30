@@ -12,11 +12,18 @@ import { IoFastFood } from "react-icons/io5";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ContactFrom from "../component/booking/ContactFrom";
-// import Enquiry from "../component/Enquiry";
 import Enquiry from "../component/booking/Enquiry";
 import Navbar from "../component/Navbar";
-import PackageImageModal from "../component/PackageImageModal";
 import ActivitiesSection from "../component/ActivitiesSection";
+import {
+  PackageModalProvider,
+  PackageImageTrigger,
+  ReadMoreButton,
+} from "../component/PackageDetailModal";
+import {
+  DestinationModalProvider,
+  DestinationImageTrigger,
+} from "../component/DestinationImageModal";
 
 async function getOfficeData() {
   const res = await fetch(process.env.BACKLINK + "/public/officeData", {
@@ -214,8 +221,6 @@ export default async function AboutSection() {
   const Servicedata = await getServices();
   const Bankdata = await getBank();
 
-  // console.log(Enquirydata);
-
   return (
     <>
       <a
@@ -313,19 +318,24 @@ export default async function AboutSection() {
                 </h1>
                 <p>{Aboutdata.data?.description}</p>
                 <div className="row mb-4">
-                  <div className="col-6">
-                    <img
-                      className="img-fluid"
-                      src={`https://${Officedata.data?.banner[0]?.slice(7)}`}
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-6">
-                    <img
-                      className="img-fluid"
-                      src={`https://${Officedata.data?.banner[1]?.slice(7)}`}
-                    />
-                  </div>
+                  {Officedata.data?.banner?.[0] && (
+                    <div className="col-6">
+                      <img
+                        className="img-fluid"
+                        src={`https://${Officedata.data.banner[0].slice(7)}`}
+                        alt=""
+                      />
+                    </div>
+                  )}
+                  {Officedata.data?.banner?.[1] && (
+                    <div className="col-6">
+                      <img
+                        className="img-fluid"
+                        src={`https://${Officedata.data.banner[1].slice(7)}`}
+                        alt=""
+                      />
+                    </div>
+                  )}
                 </div>
                 <a href="/#booking" className="btn btn-primary mt-1">
                   Book Now
@@ -405,52 +415,6 @@ export default async function AboutSection() {
         </div>
       </div>
       {/* Feature End */}
-      {/* Registration Start */}
-      {/* <div
-        className="container-fluid bg-registration py-5 d-none"
-        style={{ margin: "90px 0" }}
-      >
-        <div className="container py-5">
-          <div className="row align-items-center">
-            <div className="col-lg-7 mb-5 mb-lg-0">
-              <div className="mb-4">
-                <h6
-                  className="text-primary text-uppercase"
-                  style={{ letterSpacing: 5 }}
-                >
-                  Mega Offer
-                </h6>
-                <h1 className="text-white">
-                  <span className="text-primary">30% OFF</span> For Honeymoon
-                </h1>
-              </div>
-              <p className="text-white">
-                Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo
-                dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo.
-                Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
-                dolor
-              </p>
-              <ul className="list-inline text-white m-0">
-                <li className="py-2">
-                  <i className="fa fa-check text-primary mr-3" />
-                  Labore eos amet dolor amet diam
-                </li>
-                <li className="py-2">
-                  <i className="fa fa-check text-primary mr-3" />
-                  Etsea et sit dolor amet ipsum
-                </li>
-                <li className="py-2">
-                  <i className="fa fa-check text-primary mr-3" />
-                  Diam dolor diam elitripsum vero.
-                </li>
-              </ul>
-            </div>
-
-            <Enquiry onSubmit={onSubmit} />
-          </div>
-        </div>
-      </div> */}
-      {/* Registration End */}
 
       {/* Packages Start */}
       <div
@@ -502,64 +466,56 @@ export default async function AboutSection() {
             </p>
           </div>
 
-          <div className="row">
-            {Packagedata.data?.map((item, index) => (
-              <div className="col-lg-4 col-md-6 mb-4" key={index}>
-                <div className="package-card">
-                  {/* Image Section */}
-                  <div className="package-image-wrap">
-                    <PackageImageModal
-                      src={`https://${item.image?.slice(7)}`}
-                      alt={item.name}
-                    />
-                    {/* Discount Badge */}
-                    <div className="package-badge package-badge-discount">
-                      🏷️ {item.discount}% OFF
-                    </div>
-                    {/* Package Name Tag */}
-                    <div className="package-badge package-badge-name">
-                      {item.name}
-                    </div>
-                  </div>
-
-                  {/* Content Section */}
-                  <div className="package-content">
-                    {/* Meta Info */}
-                    <div className="package-meta">
-                      <div className="package-meta-item">
-                        <span className="package-meta-icon">📍</span>
-                        <span>{item.place}</span>
+          <PackageModalProvider>
+            <div className="row">
+              {Packagedata.data?.map((item, index) => (
+                <div className="col-lg-4 col-md-6 mb-4" key={index}>
+                  <div className="package-card">
+                    <div className="package-image-wrap">
+                      <PackageImageTrigger pkg={item} />
+                      <div className="package-badge package-badge-discount">
+                        🏷️ {item.discount}% OFF
                       </div>
-                      <div className="package-meta-item">
-                        <span className="package-meta-icon">🗓️</span>
-                        <span>{item.duration}</span>
-                      </div>
-                      <div className="package-meta-item">
-                        <span className="package-meta-icon">👥</span>
-                        <span>{item.persons}</span>
+                      <div className="package-badge package-badge-name">
+                        {item.name}
                       </div>
                     </div>
 
-                    {/* Description */}
-                    <p className="package-description">{item.description}</p>
-
-                    {/* Price + CTA */}
-                    <div className="package-footer">
-                      <div>
-                        <p className="package-price-label">Starting from</p>
-                        <p className="package-price">₹{item.price}</p>
+                    <div className="package-content">
+                      <div className="package-meta">
+                        <div className="package-meta-item">
+                          <span className="package-meta-icon">📍</span>
+                          <span>{item.place}</span>
+                        </div>
+                        <div className="package-meta-item">
+                          <span className="package-meta-icon">🗓️</span>
+                          <span>{item.duration}</span>
+                        </div>
+                        <div className="package-meta-item">
+                          <span className="package-meta-icon">👥</span>
+                          <span>{item.persons}</span>
+                        </div>
                       </div>
 
-                      <a href="#booking" className="package-cta">
-                        <i className="fa-brands fa-whatsapp package-cta-icon" />
-                        Enquire Now
-                      </a>
+                      <p className="package-description">{item.description}</p>
+                      <ReadMoreButton pkg={item} />
+
+                      <div className="package-footer">
+                        <div>
+                          <p className="package-price-label">Starting from</p>
+                          <p className="package-price">₹{item.price}</p>
+                        </div>
+                        <a href="#booking" className="package-cta">
+                          <i className="fa-brands fa-whatsapp package-cta-icon" />
+                          Enquire Now
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </PackageModalProvider>
         </div>
       </div>
       {/* Packages End */}
@@ -587,29 +543,32 @@ export default async function AboutSection() {
 
             <h1>Explore Top Destination</h1>
           </div>
-          <div className="row g-4">
-            {Gallerydata.data?.map((item, index) => (
-              <div key={index} className="col-lg-4 col-md-6">
-                <div className="destination-item position-relative overflow-hidden">
-                  <img
-                    className="img-fluid"
-                    src={`https://${item.image.slice(7)}`}
-                    alt={item.description}
-                  />
 
-                  <a
-                    className="destination-overlay text-white text-decoration-none"
-                    href=""
-                  >
-                    <h5 className="text-white">{item.description}</h5>
-                  </a>
+          <DestinationModalProvider>
+            <div className="row g-4">
+              {Gallerydata.data?.map((item, index) => (
+                <div key={index} className="col-lg-4 col-md-6">
+                  <div className="destination-item position-relative overflow-hidden">
+                    <DestinationImageTrigger
+                      src={`https://${item.image.slice(7)}`}
+                      caption={item.description}
+                    />
+
+                    <div
+                      className="destination-overlay text-white text-decoration-none"
+                      style={{ pointerEvents: "none" }}
+                    >
+                      <h5 className="text-white">{item.description}</h5>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </DestinationModalProvider>
         </div>
       </div>
       {/* Destination Start */}
+
       {/* Service Start */}
       <div className="container-fluid py-5" id="services">
         <div className="container pt-5 pb-3">
@@ -712,113 +671,6 @@ export default async function AboutSection() {
       {/* Contact Start */}
 
       <ContactFrom handleSubmit={handleSubmit} />
-      {/* Contact End */}
-
-      {/* Contact Start */}
-      <div className="container-fluid py-5 d-none">
-        <div className="container py-5">
-          <div className="text-center mb-3 pb-3">
-            <h6
-              className="text-primary text-uppercase"
-              style={{ letterSpacing: 5 }}
-            >
-              Booking{" "}
-            </h6>
-            <h1>For Booking Fill all the details</h1>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-lg-10 bg-dark p-5">
-              <div className="contact-form bg-white" style={{ padding: 30 }}>
-                <div id="success" />
-                <form
-                  name="sentMessage"
-                  id="contactForm"
-                  noValidate="novalidate"
-                >
-                  <div className="form-row">
-                    <div className="control-group col-sm-6">
-                      <input
-                        type="text"
-                        className="form-control p-4"
-                        id="name"
-                        placeholder="Your Name"
-                        required="required"
-                        data-validation-required-message="Please enter your name"
-                      />
-                      <p className="help-block text-danger" />
-                    </div>
-                    <div className="control-group col-sm-6">
-                      <input
-                        type="email"
-                        className="form-control p-4"
-                        id="email"
-                        placeholder="Your Email"
-                        required="required"
-                        data-validation-required-message="Please enter your email"
-                      />
-                      <p className="help-block text-danger" />
-                    </div>
-                  </div>
-                  <div className="control-group">
-                    <input
-                      type="text"
-                      className="form-control p-4"
-                      id="subject"
-                      placeholder="Subject"
-                      required="required"
-                      data-validation-required-message="Please enter a subject"
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-                  <div className="control-group">
-                    <input
-                      type="text"
-                      className="form-control p-4"
-                      id="subject"
-                      placeholder="Subject"
-                      required="required"
-                      data-validation-required-message="Please enter a subject"
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-                  <div className="control-group">
-                    <input
-                      type="text"
-                      className="form-control p-4"
-                      id="subject"
-                      placeholder="Subject"
-                      required="required"
-                      data-validation-required-message="Please enter a subject"
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-                  <div className="control-group">
-                    <input
-                      type="text"
-                      className="form-control p-4"
-                      id="subject"
-                      placeholder="Subject"
-                      required="required"
-                      data-validation-required-message="Please enter a subject"
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-
-                  <div className="text-center">
-                    <button
-                      className="btn btn-primary py-3 px-4"
-                      type="submit"
-                      id="sendMessageButton"
-                    >
-                      Send Message
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       {/* Contact End */}
 
       {/* Bank Details Start */}
@@ -1128,10 +980,6 @@ export default async function AboutSection() {
               Copyright © <a href="#">Amp Technoogy</a>. All Rights Reserved.
             </p>
           </div>
-          {/*   <div class="col-lg-6 text-center text-md-right">
-            <p class="m-0 text-white-50">Designed by <a>
-            </p>
-        </div>*/}
         </div>
       </div>
       {/* Footer End */}
@@ -1139,9 +987,6 @@ export default async function AboutSection() {
       <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top">
         <i className="fa fa-angle-double-up" />
       </a>
-      {/* JavaScript Libraries */}
-      {/* Contact Javascript File */}
-      {/* Template Javascript */}
     </>
   );
 }
