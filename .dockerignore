@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.gitignore
+.gitattributes
+.github
+.env
+.env.*
+!.env.example
+Dockerfile
+docker-compose.yml
+docker-compose.yaml
+deploy.sh
+init-ssl.sh
+README.md
