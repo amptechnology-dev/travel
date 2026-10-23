@@ -44,6 +44,8 @@ jobs:
           build-args: |
             NEXT_PUBLIC_BACKLINK=${{ secrets.NEXT_PUBLIC_BACKLINK }}
             NEXT_PUBLIC_BACKPUBLIC=${{ secrets.NEXT_PUBLIC_BACKPUBLIC }}
+            BACKLINK=${{ secrets.NEXT_PUBLIC_BACKLINK }}
+            BACKPUBLIC=${{ secrets.NEXT_PUBLIC_BACKPUBLIC }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
