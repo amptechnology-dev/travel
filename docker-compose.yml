@@ -4,6 +4,8 @@ services:
     image: ghcr.io/amptechnology-dev/travel:latest
     env_file:
       - .env
+    environment:
+      - TZ=Asia/Kolkata
     expose:
       - "5010"
     networks:
